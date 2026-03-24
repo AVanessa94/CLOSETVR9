@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./app/css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/7eddd731f6.js" crossorigin="anonymous"></script>
+    <title>ClosetVR | Integrantes</title>
+</head>
+<body>
+  <div class="nav-bar">
+        <div class="logo">
+            <h1>ClosetVR</h1>
+        </div>
+         <ul class="nav-nav">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="integrantes.html">Integrantes</a></li>  
+            <li>
+                <div class="dropdown">
+                    <a href="#" class="dropdown">
+                        Semestres <i class="fa-solid fa-chevron-down"></i>
+                    </a>
+                    <ul class="list-down"> <!-- para los dropdown les recomiendo usar divs-->
+                        <li><a href="semestre1.html">Semestre 1</a></li>
+                        <li><a href="semestre2.html">Semestre 2</a></li>
+                        <li><a href="semestre3.html">Semestre 3</a></li>
+                        <li><a href="#">Semestre 4 <img src="./app/images/bloqueado.png" alt=""></a></li>
+                        <li><a href="#">Semestre 5 <img src="./app/images/bloqueado.png" alt=""></a></li>
+                        <li><a href="#">Semestre 6 <img src="./app/images/bloqueado.png" alt=""></a></li>
+                    </ul>
+                </div>  
+            </li>
+            <li> <a href="loginsignup.html" class="login-btn"> INICIAR SESIÓN</a></li>
+        </ul>
+  </div>
+    <section id="integrantes">
+        <div class="flex">
+            <div class="col">
+                <div class="avatar">
+                    <img src="./app/images/integrantes/vanessa.jpeg" alt="">
+                </div>
+                <div class="data">
+                    <div class="nombre">Angie Vanessa Barrios</div>
+                    <p><strong>Gerente:</strong><br> Encargada de supervisar el desarrollo y la operación general de Closet VR, asegurando la integración efectiva de la realidad aumentada, la satisfacción del usuario y el cumplimiento de los objetivos del proyecto</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="avatar">
+                    <img src="./app/images/integrantes/mateo.jpeg" alt="">
+                </div>
+                <div class="data">
+                    <div class="nombre">David Mateo Moyano</div>
+                    <p><strong>Ingeniero Bases de Datos:</strong> <br>Se encarga de diseñar, mantener y optimizar la base de datos que almacena la información de los usuarios y prendas. También garantiza la seguridad de los datos, implementa respaldos, controla el acceso y colabora con el equipo de desarrollo para asegurar que la base de datos funcione de manera eficiente y segura dentro de la aplicación.</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="avatar">
+                    <img src="./app/images/integrantes/micheel.jpeg" alt="">
+                </div>
+                <div class="data">
+                    <div class="nombre">Micheel Fernanda Quintero</div>
+                    <p><strong>Desarrolladora Realidad Aumentada:</strong> <br> En Closet VR, el Desarrollador de Realidad Aumentada (AR Developer) implementa y optimiza las funciones de realidad aumentada, integrando prendas y accesorios virtuales en el entorno del usuario. Colabora con el equipo de diseño para crear modelos 3D y realiza pruebas para garantizar una experiencia de usuario fluida y realista.</p>
+                </div>
+            </div>
+        </div>
+   <section id="contactanos" style="display: none;">
+        <div class="container">
+            <div class="title"><h1>Contactanos</h1></div>
+            <div class="form">
+                <input type="text" name="name" id="name" placeholder="Nombre Completo">
+                <input type="email" name="mail" id="mail" placeholder="Correo Electronico">
+                <input type="text" name="tel" id="tel" placeholder="Numero de Contacto">
+                <textarea rows="10" name="message" id="message" placeholder="Escribe lo que nos quieres comentar..."></textarea>
+                <button>Enviar</button>
+            </div>
+        </div>
+    </section>
+    <footer>
+      <span>©Todos los derechos reservados <br> ClosetVR</span>
+        <div class="socials">
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-facebook"></i></a>
+        </div>
+    </footer>
+    <div id="help-button" title="¿Necesitas ayuda?">
+  <img src="app/images/CLOSET VR/correo-de-contacto.png" alt="Ayuda" />
+</div>
+<script>
+  document.getElementById("help-button").addEventListener("click", function () {
+    const contacto = document.getElementById("contactanos");
+    if (contacto.style.display === "none" || contacto.style.display === "") {
+      contacto.style.display = "block";
+      contacto.scrollIntoView({ behavior: "smooth" });
+    } else {
+      contacto.style.display = "none";
+    }
+  });
+</script>
+
+
+
+</body>
+</html>

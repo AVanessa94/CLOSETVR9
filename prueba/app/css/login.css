@@ -1,0 +1,150 @@
+/* Tipografía y Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /* Fondo con imagen de moda */
+  body {
+    background: url('https://dej7zfulpdtvb.cloudfront.net/uploads/2025/01/03090308/Todo-sobre-streetwear-moda-1024x683.jpg') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    position: relative;
+  }
+  
+  /* Capa oscura sobre la imagen para legibilidad */
+  body::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 0;
+  }
+  
+  /* Contenedor del formulario */
+  .container {
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2.5rem;
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 400px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Título del formulario */
+  .container h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    color: #222;
+  }
+  .container p {
+    text-align: center;
+    margin-bottom: 16PX;
+    COLOR: #333
+  }
+  
+  /* Formulario */
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  /* Inputs */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    padding: 0.8rem 1rem;
+    border: none;
+    border-radius: 16px;
+    background: #f5f5f5;
+    box-shadow: inset 1px 1px 3px #ddd, inset -1px -1px 3px #fff;
+    transition: all 0.3s ease;
+  }
+  
+  input:focus {
+    background: #fff;
+    outline: none;
+    box-shadow: 0 0 0 2px #4f4f4f;
+  }
+  
+  /* Botón */
+  button {
+    padding: 0.9rem 1rem;
+    background: #1b1b1b;
+    color: white;
+    font-weight: 600;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  button:hover {
+    background: #535353;
+  }
+  
+  /* Cambiar a login/sign up */
+  .toggle {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    color: #444;
+  }
+  
+  .toggle a {
+    color: #e91e63;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  
+  .toggle a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Animación */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Responsive */
+  @media (max-width: 480px) {
+    .container {
+      padding: 2rem 1.5rem;
+    }
+  
+    .container h2 {
+      font-size: 1.75rem;
+    }
+  
+    input, button {
+      font-size: 1rem;
+    }
+  }
+
+
+/* Borde animado del contenedor */
+@keyframes borderGlow {
+  0% { box-shadow: 0 0 5px #e91e63; }
+  50% { box-shadow: 0 0 20px #e91e63; }
+  100% { box-shadow: 0 0 5px #e91e63; }
+}
+
+.container {
+  animation: borderGlow 3s infinite;
+}

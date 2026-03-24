@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login / Sign Up</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <link href="./app/css/loginsignup.css" rel="stylesheet">
+</head>
+<body> 
+
+  <div class="container" id="form-container">
+    <h2>INICIAR SESIÓN</h2>
+
+    <!-- LOGIN -->
+    <form id="login-form" method="POST" action="/login">
+      <input type="email" name="loginEmail" placeholder="Correo electrónico" required>
+      <input type="password" name="loginPassword" placeholder="Contraseña" required>
+      <button type="submit">Iniciar sesión</button>
+
+      <div class="toggle">
+        ¿No tienes cuenta? <a href="#" onclick="toggleForm()">Regístrate</a>
+      </div>
+    </form>
+
+    <!-- SIGNUP -->
+    <form id="signup-form" method="POST" action="/signup" style="display: none;">
+      <h2>REGISTRO</h2>
+      <input type="text" name="signupName" placeholder="Nombre completo" required>
+      <input type="email" name="signupEmail" placeholder="Correo electrónico" required>
+      <input type="password" name="signupPassword" placeholder="Contraseña" required>
+      <button type="submit">Crear cuenta</button>
+
+      <div class="toggle">
+        ¿Ya tienes cuenta? <a href="#" onclick="toggleForm()">Inicia sesión</a>
+      </div>
+    </form>
+  </div>
+
+<script>
+function toggleForm() {
+    const loginForm = document.getElementById('login-form');
+    const signupForm = document.getElementById('signup-form');
+    const containerH2 = document.querySelector("#form-container h2");
+
+    if (loginForm.style.display === "none") {
+      loginForm.style.display = "flex";
+      signupForm.style.display = "none";
+      containerH2.innerText = "INICIAR SESIÓN";
+    } else {
+      loginForm.style.display = "none";
+      signupForm.style.display = "flex";
+      containerH2.innerText = "REGISTRO";
+    }
+}
+</script>
+</body>
+</html>

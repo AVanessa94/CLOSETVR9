@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./app/css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/7eddd731f6.js" crossorigin="anonymous"></script>
+    <title>ClosetVR | Semestre 1</title>
+</head>
+
+<body>
+
+        <div class="nav-bar">
+            <div class="logo">
+                <h1>ClosetVR</h1>
+            </div>
+            <ul class="nav-nav">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="integrantes.html">Integrantes</a></li>
+                <li>
+                    <div class="dropdown">
+                        <a href="#" class="dropdown">
+                            Semestres <i class="fa-solid fa-chevron-down"></i>
+                        </a>
+                        <ul class="list-down"> <!-- para los dropdown les recomiendo usar divs-->
+                            <li><a href="#">Semestre 1</a></li>
+                            <li><a href="semestre2.html">Semestre 2</a></li>
+                            <li><a href="semestre3.html">Semestre 3</a></li>
+                            <li><a href="#">Semestre 4 <img src="./app/images/bloqueado.png" alt=""></a></li>
+                            <li><a href="#">Semestre 5 <img src="./app/images/bloqueado.png" alt=""></a></li>
+                            <li><a href="#">Semestre 6 <img src="./app/images/bloqueado.png" alt=""></a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li> <a href="loginsignup.html" class="login-btn"> INICIAR SESIÓN</a></li>
+            </ul>
+        </div>
+        <section id="slider">
+            <div class="left-content" style="background-image: url(./app/images/problema.jpeg);background-position: center;background-size:cover;background-repeat:no-repeat;
+        background-position-y: -100px;
+        box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.329);"></div>
+            <div class="right-content">
+                <div class="title">
+                    <h1>Pregunta Problema</h1>
+                </div>
+                <p>
+                    ¿Cómo puede una app de realidad aumentada hacer que se realicen compras de forma segura asegurando
+                    al cliente que las prendas de vestir y accesorios que obtenga sean lo que desea?
+                </p>
+            </div>
+        </section>
+        <br><br><br>
+        <section id="slider" style="background:#fff;">
+            <div class="right-content" style="margin-right:50px;">
+                <div class="title">
+                    <h1>Objetivo general</h1>
+                </div>
+                <p>
+                    Desarrollar "Closet VR", una aplicación de realidad aumentada que facilite la compra, planificación
+                    y selección de atuendos al permitir a los usuarios crear y gestionar un armario virtual,
+                    experimentar con combinaciones de ropa y accesorios en tiempo real, y recibir recomendaciones
+                    personalizadas, con el fin de ofrecer una experiencia de estilo más intuitiva y agradable.
+                </p>
+            </div>
+            <div class="left-content" style="background-image: url(./app/images/objetivo.jpeg);background-position: center;background-size:cover;background-repeat:no-repeat;
+        box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.329);"></div>
+        </section>
+        <br><br><br>
+        <section id="slider">
+            <div class="right-content" style="text-align: center;">
+                <div class="title">
+                    <h1>Diagrama de Gantt</h1>
+                </div>
+                <p>
+                    Fechas establecidas
+                </p>
+            </div>
+            <br>
+            <div class="content">
+                <img src="./app/images/modelo.jpeg" alt="1">
+            </div>
+        </section>
+        <br><br><br>
+        <section id="slider" style="background:#fff;">
+            <div class="right-content" style="text-align: center;">
+                <div class="title">
+                    <h1>MODELO RELACIONAL</h1>
+                </div>
+                <p>
+                    Entidad - Relacion
+                </p>
+            </div>
+            <br>
+            <div class="content">
+                <img src="./app/images/diagrama.jpeg" alt="1">
+            </div>
+        </section>
+        <br><br><br>
+        <section id="slider">
+            <div class="right-content" style="text-align: center;">
+                <div class="title">
+                    <h1>MODELO RELACIONAL</h1>
+                </div>
+                <p>
+                    Mysql
+                </p>
+            </div>
+            <br>
+            <div class="content">
+                <img src="./app/images/mysql.jpeg" alt="1">
+            </div>
+        </section>
+        <section id="slider" style="background:#fff;">
+            <div class="right-content" style="text-align: center;">
+                <div class="title">
+                    <h1>DOCUMENTACION</h1>
+                </div>
+            </div>
+            <div class="content">
+                <embed src="./app/images/closetvr..pdf"
+                    style="width: 600px; height: 350px; justify-content: center; display: flex; align-items: center;flex-wrap:wrap;"></embed>
+            </div>
+        </section>
+        </div>
+        <section id="contactanos" style="display: none;">
+            <div class="container">
+                <div class="title">
+                    <h1>Contactanos</h1>
+                </div>
+                <div class="form">
+                    <input type="text" name="name" id="name" placeholder="Nombre Completo">
+                    <input type="email" name="mail" id="mail" placeholder="Correo Electronico">
+                    <input type="text" name="tel" id="tel" placeholder="Numero de Contacto">
+                    <textarea rows="10" name="message" id="message"
+                        placeholder="Escribe lo que nos quieres comentar..."></textarea>
+                    <button>Enviar</button>
+                </div>
+            </div>
+        </section>
+    <footer>
+      <span>©Todos los derechos reservados <br> ClosetVR</span>
+        <div class="socials">
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-facebook"></i></a>
+        </div>
+    </footer>
+        <div id="help-button" title="¿Necesitas ayuda?">
+            <img src="app/images/CLOSET VR/correo-de-contacto.png" alt="Ayuda" />
+        </div>
+        <script>
+            document.getElementById("help-button").addEventListener("click", function () {
+                const contacto = document.getElementById("contactanos");
+                if (contacto.style.display === "none" || contacto.style.display === "") {
+                    contacto.style.display = "block";
+                    contacto.scrollIntoView({ behavior: "smooth" });
+                } else {
+                    contacto.style.display = "none";
+                }
+            });
+        </script>
+
+</body>
+
+</html>

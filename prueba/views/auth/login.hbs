@@ -1,0 +1,52 @@
+
+  <div class="container" id="form-container">
+    <h2>Login</h2>
+    <form id="login-form" action="process_login.php" method="POST">
+      <input type="email" name="loginEmail" placeholder="Correo electrónico" required>
+      <input type="password" name="loginPassword" placeholder="Contraseña" required>
+      <button type="submit">Iniciar sesión</button>
+      <div class="toggle">
+        ¿No tienes cuenta? <a href="#" onclick="toggleForm()">Regístrate</a>
+      </div>
+    </form>
+  
+    <form id="signup-form" action="process_signup.php" method="POST" style="display: none;">
+      <h2> </h2>
+      <input type="text" name="signupName" placeholder="Nombre completo" required>
+      <input type="email" name="signupEmail" placeholder="Correo electrónico" required>
+      <input type="password" name="signupPassword" placeholder="Contraseña" required>
+      <button type="submit">Crear cuenta</button>
+      <div class="toggle">
+        ¿Ya tienes cuenta? <a href="#" onclick="toggleForm()">Inicia sesión</a>
+      </div>
+    </form>
+  </div>
+  
+  <script>
+    function toggleForm() {
+      const loginForm = document.getElementById('login-form');
+      const signupForm = document.getElementById('signup-form');
+      const container = document.getElementById('form-container');
+      if (loginForm.style.display === "none") {
+        loginForm.style.display = "flex";
+        signupForm.style.display = "none";
+        container.querySelector("h2").innerText = "Login";
+      } else {
+        loginForm.style.display = "none";
+        signupForm.style.display = "flex";
+        container.querySelector("h2").innerText = "Sign Up";
+      }
+    }
+  </script>
+
+<script>
+  document.getElementById('login-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // Aquí puedes agregar validaciones si quieres
+
+    // Redirigir al catálogo de ropa
+    window.location.href = "catalogo.html";
+  });
+</script>
+

@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Perfil - ClosetVR (Web)</title>
+<style>
+  :root{
+    --bg:#fdfcfb;
+    --card:#ffffff;
+    --accent:#111111;
+    --muted:#777777;
+    --button-beige:#d4c4b0;
+    --highlight:#f9f8f7;
+    --danger:#e74c3c;
+    --radius:12px;
+    --shadow: 0 6px 18px rgba(0,0,0,0.08);
+    --maxw:980px;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family: "Inter", Arial, sans-serif;
+    background:var(--bg);
+    color:var(--accent);
+    -webkit-font-smoothing:antialiased;
+  }
+  .app {
+    max-width:var(--maxw);
+    margin:24px auto;
+    padding:20px;
+  }
+
+  /* Header */
+  .header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    margin-bottom:16px;
+  }
+  .title{
+    font-size:20px;
+    font-weight:700;
+  }
+  .cart{
+    font-size:16px;
+    background:transparent;
+    border:0;
+    cursor:pointer;
+  }
+
+  /* Card */
+  .card{
+    background:var(--card);
+    border-radius:var(--radius);
+    padding:16px;
+    box-shadow:var(--shadow);
+    border:1px solid rgba(0,0,0,0.04);
+  }
+
+  /* Layout */
+  .main{
+    display:grid;
+    grid-template-columns: 1fr;
+    gap:14px;
+  }
+  .user-card{
+    display:flex;
+    gap:20px;
+    align-items:center;
+  }
+  .avatar{
+    width:80px;height:80px;border-radius:12px;
+    background:var(--highlight); display:flex; align-items:center; justify-content:center;
+    font-size:36px;
+  }
+  .user-info h2{margin:0;font-size:20px}
+  .user-info p{margin:4px 0;color:var(--muted)}
+
+  .btn {
+    border:0;padding:10px 12px;border-radius:14px;cursor:pointer;font-weight:700;
+  }
+  .btn-edit{ background:var(--button-beige); color:white; }
+  .btn-ghost{ background:var(--card); color:var(--accent); border:1px solid rgba(0,0,0,.06) }
+  .btn-danger{ background:var(--danger); color:white; }
+
+  .stats-grid{
+    display:grid; grid-template-columns: repeat(2,1fr); gap:10px;
+    margin-top:10px;
+  }
+  .stat{
+    background:var(--highlight);
+    border-radius:10px; padding:12px; text-align:center;
+  }
+  .stat .value{ font-weight:700; color:var(--button-beige); font-size:16px; margin-top:6px; }
+
+  /* Options list */
+  .options{ display:flex; flex-direction:column; gap:8px; margin-top:10px; }
+  .option-btn{
+    display:flex; align-items:center; gap:12px; padding:12px; border-radius:10px; text-align:left;
+    background:var(--card); cursor:pointer; border:1px solid rgba(0,0,0,0.03);
+  }
+
+  /* History list / cards */
+  .list .item{ display:flex; justify-content:space-between; align-items:center; gap:10px; padding:12px; margin-bottom:8px; border-radius:10px; background:var(--card); border:1px solid rgba(0,0,0,0.03);}
+  .item h4{ margin:0; font-size:15px; }
+  .item p{ margin:4px 0; color:var(--muted); font-size:13px; }
+
+  /* Form */
+  .form-row{ display:flex; gap:10px; flex-wrap:wrap; }
+  .field{ flex:1; min-width:200px; margin-bottom:10px; }
+  input[type="text"], input[type="email"]{
+    width:100%; padding:12px; border-radius:10px; border:1px solid rgba(0,0,0,.06);
+    background:var(--highlight); color:var(--accent);
+  }
+
+  /* Bottom nav */
+  .bottom-nav{
+    position:fixed; left:50%; transform:translateX(-50%); bottom:18px; width:calc(100% - 40px); max-width:var(--maxw);
+    display:flex; justify-content:space-around; gap:8px; padding:10px; background:transparent;
+  }
+  .nav-btn{
+    background:var(--card); border-radius:12px; padding:10px 14px; border:1px solid rgba(0,0,0,0.04);
+    cursor:pointer; display:flex; gap:8px; align-items:center; justify-content:center;
+  }
+
+  /* Responsive */
+  @media(min-width:900px){
+    .main{ grid-template-columns: 1fr 360px; align-items:start; }
+    .right-column{ position:sticky; top:20px; height:fit-content; }
+  }
+
+  .hidden{ display:none; }
+
+  /* small helpers */
+  .muted{ color:var(--muted); font-size:14px; }
+  .small{ font-size:13px; color:var(--muted); }
+
+</style>
+</head>
+<body>
+
+<div class="app">
+  <div class="header">
+    <div class="title">ClosetVR — Perfil</div>
+    <button class="cart" id="cartBtn">🛒 (<span id="cartCount">0</span>)</button>
+  </div>
+
+  <div id="views" class="main">
+    <!-- PROFILE VIEW -->
+    <div id="profileView" class="card">
+      <div class="user-card">
+        <div class="avatar">👤</div>
+        <div class="user-info">
+          <h2 id="userName">Ana María Gutiérrez</h2>
+          <p id="userEmail">ana.gutierrez@example.com</p>
+          <p class="small">Miembro desde: Octubre 2023</p>
+          <div style="margin-top:12px;">
+            <button class="btn btn-edit" onclick="showEditProfile()">✏️ Editar Perfil</button>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:14px;" class="card" id="statsCard">
+        <div style="font-weight:700; font-size:16px;">📊 Mis Estadísticas</div>
+        <div class="stats-grid">
+          <div class="stat" onclick="showHistory()" style="cursor:pointer">
+            <div>🛒</div>
+            <div class="value" id="statCompras">0</div>
+            <div class="small">Compras</div>
+          </div>
+          <div class="stat">
+            <div>👔</div>
+            <div class="value" id="statArmario">0</div>
+            <div class="small">En Armario</div>
+          </div>
+          <div class="stat">
+            <div>⭐</div>
+            <div class="value">4.8/5</div>
+            <div class="small">Valoración</div>
+          </div>
+          <div class="stat">
+            <div>🎯</div>
+            <div class="value">5</div>
+            <div class="small">Favoritos</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="options" style="margin-top:12px;">
+        <div class="option-btn" onclick="showConfig()">
+          <div>⚙️</div><div>Configuración</div>
+        </div>
+        <div class="option-btn" onclick="showPreferences()">
+          <div>🎨</div><div>Preferencias</div>
+        </div>
+        <div class="option-btn" onclick="showNotifications()">
+          <div>📱</div><div>Notificaciones</div>
+        </div>
+        <div class="option-btn" onclick="showPrivacy()">
+          <div>🔒</div><div>Privacidad</div>
+        </div>
+        <div class="option-btn" onclick="showHelp()">
+          <div>❓</div><div>Centro de Ayuda</div>
+        </div>
+        <div class="option-btn" onclick="showPayments()">
+          <div>💳</div><div>Métodos de Pago</div>
+        </div>
+      </div>
+
+      <div style="margin-top:16px;">
+        <button class="btn btn-danger" onclick="cerrarSesion()">🚪 Cerrar Sesión</button>
+      </div>
+    </div>
+
+    <!-- RIGHT COLUMN (history preview) -->
+    <div class="right-column">
+      <div id="sideCard" class="card">
+        <div style="font-weight:700; margin-bottom:8px">Resumen rápido</div>
+        <div class="small">Compras: <span id="sideCompras">0</span></div>
+        <div class="small">En armario: <span id="sideArmario">0</span></div>
+      </div>
+    </div>
+
+    <!-- Other views (hidden by default) -->
+    <div id="historyView" class="card hidden" style="grid-column:1/-1;">
+      <div style="display:flex;align-items:center;justify-content:space-between;">
+        <div style="font-weight:700">🛒 Historial de Compras</div>
+        <button class="btn btn-ghost" onclick="showProfile()">← Volver al Perfil</button>
+      </div>
+      <div id="historyList" class="list" style="margin-top:12px;"></div>
+      <div id="historyTotal" style="margin-top:12px;font-weight:700"></div>
+    </div>
+
+    <div id="configView" class="card hidden" style="grid-column:1/-1;">
+      <div style="display:flex;align-items:center;justify-content:space-between;">
+        <div style="font-weight:700">⚙️ Configuración</div>
+        <button class="btn btn-ghost" onclick="showProfile()">← Volver al Perfil</button>
+      </div>
+      <div style="margin-top:12px;">
+        <div class="card">
+          <div style="font-weight:700">📝 Información Personal</div>
+          <div class="small">Gestiona tus datos personales</div>
+        </div>
+        <div class="card" style="margin-top:8px;">
+          <div style="font-weight:700">🔐 Seguridad</div>
+          <div class="small">Cambia tu contraseña y configuración de seguridad</div>
+        </div>
+        <div class="card" style="margin-top:8px;">
+          <div style="font-weight:700">🎨 Tema</div>
+          <div class="small">Personaliza la apariencia de la app</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="prefView" class="card hidden" style="grid-column:1/-1;">
+      <div style="display:flex;align-items:center;justify-content:space-between;">
+        <div style="font-weight:700">🎨 Preferencias de Estilo</div>
+        <button class="btn btn-ghost" onclick="showProfile()">← Volver al Perfil</button>
+      </div>
+      <div style="margin-top:12px;">
+        <div class="card">
+          <div style="font-weight:700">Tallas</div>
+          <div class="small">Selecciona tus tallas preferidas</div>
+          <div style="margin-top:8px;">
+            <label><input type="checkbox" value="XS"> XS</label> &nbsp;
+            <label><input type="checkbox" value="S"> S</label> &nbsp;
+            <label><input type="checkbox" value="M"> M</label> &nbsp;
+            <label><input type="checkbox" value="L"> L</label> &nbsp;
+            <label><input type="checkbox" value="XL"> XL</label>
+          </div>
+        </div>
+        <div class="card" style="margin-top:10px;">
+          <div style="font-weight:700">Estilos Preferidos</div>
+          <div style="margin-top:8px;">
+            <label><input type="checkbox"> Casual</label><br>
+            <label><input type="checkbox"> Deportivo</label><br>
+            <label><input type="checkbox"> Elegante</label><br>
+            <label><input type="checkbox"> Bohemio</label><br>
+            <label><input type="checkbox"> Urbano</label>
+          </div>
+          <div style="margin-top:12px;"><button class="btn btn-edit" onclick="alertSaved('Preferencias')">💾 Guardar Preferencias</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="notifView" class="card hidden" style="grid-column:1/-1;">
+      <div style="display:flex;align-items:center;justify-content:space-between;">
+        <div style="font-weight:700">📱 Notificaciones</div>
+        <button class="btn btn-ghost" onclick="showProfile()">← Volver al Perfil</button>
+      </div>
+      <div style="margin-top:12px;">
+        <div class="card">
+          <label>🔔 Promociones <input type="checkbox" checked></label><br>
+          <label>📦 Estado de pedidos <input type="checkbox" checked></label><br>
+          <label>⭐ Nuevos productos <input type="checkbox" checked></label><br>
+          <label>👑 Contenido exclusivo <input type="checkbox"></label>
+        </div>
+      </div>
+    </div>
+
+    <div id="privacyView" class="card hidden" style="grid-column:1/-1;">
+      <div style="display:flex;align-items:center;justify-content:space-between;">
+        <div style="font-weight:700">🔒 Privacidad y Seguridad</div>
+        <button class="btn btn-ghost" onclick="showProfile()">← Volver al Perfil</button>
+      </div>
+      <div style="margin-top:12px;">
+        <div class="card">
+          <div style="font-weight:700">👁️ Visibilidad del perfil</div>
+          <div class="small">Controla quién puede ver tu perfil</div>
+        </div>
+        <div class="card" style="margin-top:8px;">
+          <div style="font-weight:700">🔐 Autenticación de dos factores</div>
+          <div class="small">Añade una capa extra de seguridad</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="helpView" class="card hidden" style="grid-column:1/-1;">
+      <div style="display:flex;align-items:center;justify-content:space-between;">
+        <div style="font-weight:700">❓ Centro de Ayuda</div>
+        <button class="btn btn-ghost" onclick="showProfile()">← Volver al Perfil</button>
+      </div>
+      <div style="margin-top:12px;">
+        <div class="card">
+          <div style="font-weight:700">📞 Soporte Telefónico</div>
+          <div class="small">+57 123 456 7890 — Lun-Dom 8:00-22:00</div>
+        </div>
+        <div class="card" style="margin-top:8px;">
+          <div style="font-weight:700">📧 Email de Soporte</div>
+          <div class="small">soporte@closetvr.com</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="paymentsView" class="card hidden" style="grid-column:1/-1;">
+      <div style="display:flex;align-items:center;justify-content:space-between;">
+        <div style="font-weight:700">💳 Métodos de Pago</div>
+        <button class="btn btn-ghost" onclick="showProfile()">← Volver al Perfil</button>
+      </div>
+      <div style="margin-top:12px;">
+        <div class="card">
+          <div style="font-weight:700">💳 Tarjeta de Crédito</div>
+          <div class="small">Visa **1234 — Principal</div>
+        </div>
+        <div class="card" style="margin-top:8px;">
+          <div style="font-weight:700">📱 Nequi</div>
+          <div class="small">312****890 — Activo</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="editView" class="card hidden" style="grid-column:1/-1;">
+      <div style="display:flex;align-items:center;justify-content:space-between;">
+        <div style="font-weight:700">✏️ Editar Perfil</div>
+        <button class="btn btn-ghost" onclick="showProfile()">← Cancelar</button>
+      </div>
+      <div style="margin-top:12px;">
+        <div class="card">
+          <div class="form-row">
+            <div class="field">
+              <label class="small">Nombre completo</label>
+              <input id="inpName" type="text" value="Ana María Gutiérrez">
+            </div>
+            <div class="field">
+              <label class="small">Email</label>
+              <input id="inpEmail" type="email" value="ana.gutierrez@example.com">
+            </div>
+          </div>
+
+          <div class="form-row" style="margin-top:8px;">
+            <div class="field">
+              <label class="small">Teléfono</label>
+              <input id="inpPhone" type="text" value="+57 300 123 4567">
+            </div>
+            <div class="field">
+              <label class="small">Dirección</label>
+              <input id="inpAddress" type="text" value="Calle 123 #45-67, Medellín">
+            </div>
+          </div>
+
+          <div style="margin-top:12px;">
+            <button class="btn btn-edit" onclick="saveProfile()">💾 Guardar Cambios</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div> <!-- end views -->
+</div>
+
+<!-- bottom navigation -->
+<div class="bottom-nav">
+  <button class="nav-btn" onclick="showProfile()">🏠 Perfil</button>
+  <button class="nav-btn" onclick="showHistory()">🛒 Historial</button>
+  <button class="nav-btn" onclick="showConfig()">⚙️ Config</button>
+  <button class="nav-btn" onclick="showPreferences()">🎨 Preferencias</button>
+  <button class="nav-btn" onclick="showPayments()">💳 Pagos</button>
+</div>
+
+<script>
+  // Mock "app" data (similar to app.armario/app.carrito)
+  const app = {
+    PALETA: {
+      bg: '#fdfcfb',
+      card: '#ffffff',
+      accent: '#111111',
+      muted: '#777777',
+      button_beige: '#d4c4b0',
+      highlight: '#f9f8f7'
+    },
+    armario: [
+      { id:1, nombre:"Pantalones Vaqueros Acampanados", precio:89990, comprado:true, fecha_compra:"2025-10-01" },
+      { id:2, nombre:"Camiseta Oversize Blanco", precio:45990, comprado:false },
+      { id:3, nombre:"Vestido Verano Floral", precio:75990, comprado:true, fecha_compra:"2025-09-15" }
+    ],
+    carrito: []
+  };
+
+  // Inicializar UI con datos
+  function init(){
+    updateStats();
+    document.getElementById('cartBtn').addEventListener('click', ()=> alert('Carrito: '+ app.carrito.length + ' items'));
+  }
+
+  function updateStats(){
+    const compras = app.armario.filter(p => p.comprado).length;
+    const armarioCount = app.armario.length;
+    document.getElementById('statCompras').innerText = compras;
+    document.getElementById('statArmario').innerText = armarioCount;
+    document.getElementById('sideCompras').innerText = compras;
+    document.getElementById('sideArmario').innerText = armarioCount;
+    document.getElementById('cartCount').innerText = app.carrito.length;
+  }
+
+  // Views
+  function hideAll(){
+    const ids = ['profileView','historyView','configView','prefView','notifView','privacyView','helpView','paymentsView','editView'];
+    ids.forEach(id => document.getElementById(id).classList.add('hidden'));
+  }
+
+  function showProfile(){
+    hideAll();
+    document.getElementById('profileView').classList.remove('hidden');
+    document.getElementById('sideCard').classList.remove('hidden');
+    // ensure right-column visible
+    document.getElementById('profileView').scrollIntoView({behavior:'smooth'});
+  }
+
+  function showHistory(){
+    hideAll();
+    document.getElementById('historyView').classList.remove('hidden');
+    document.getElementById('sideCard').classList.add('hidden');
+    renderHistory();
+  }
+
+  function showConfig(){ hideAll(); document.getElementById('configView').classList.remove('hidden'); document.getElementById('sideCard').classList.add('hidden'); }
+  function showPreferences(){ hideAll(); document.getElementById('prefView').classList.remove('hidden'); document.getElementById('sideCard').classList.add('hidden'); }
+  function showNotifications(){ hideAll(); document.getElementById('notifView').classList.remove('hidden'); document.getElementById('sideCard').classList.add('hidden'); }
+  function showPrivacy(){ hideAll(); document.getElementById('privacyView').classList.remove('hidden'); document.getElementById('sideCard').classList.add('hidden'); }
+  function showHelp(){ hideAll(); document.getElementById('helpView').classList.remove('hidden'); document.getElementById('sideCard').classList.add('hidden'); }
+  function showPayments(){ hideAll(); document.getElementById('paymentsView').classList.remove('hidden'); document.getElementById('sideCard').classList.add('hidden'); }
+  function showEditProfile(){ hideAll(); document.getElementById('editView').classList.remove('hidden'); document.getElementById('sideCard').classList.add('hidden'); }
+
+  // History render
+  function renderHistory(){
+    const list = document.getElementById('historyList');
+    list.innerHTML = '';
+    const comprados = app.armario.filter(p => p.comprado);
+    if(comprados.length === 0){
+      list.innerHTML = '<div class="small">🎯 Aún no has realizado compras</div>';
+      document.getElementById('historyTotal').innerText = '';
+      return;
+    }
+    let total = 0;
+    comprados.forEach(p => {
+      total += p.precio;
+      const el = document.createElement('div');
+      el.className = 'item';
+      el.innerHTML = `<div>
+                        <h4>${p.nombre}</h4>
+                        <p class="small">Comprado el: ${p.fecha_compra || 'Fecha no disponible'}</p>
+                      </div>
+                      <div style="text-align:right">
+                        <div style="font-weight:700;">${formatMoney(p.precio)}</div>
+                      </div>`;
+      list.appendChild(el);
+    });
+    document.getElementById('historyTotal').innerText = 'Total gastado: ' + formatMoney(total);
+  }
+
+  function formatMoney(n){
+    return '$' + n.toLocaleString('es-CO') + ' COP';
+  }
+
+  // Edit / Save profile
+  function saveProfile(){
+    const name = document.getElementById('inpName').value;
+    const email = document.getElementById('inpEmail').value;
+    const phone = document.getElementById('inpPhone').value;
+    const addr = document.getElementById('inpAddress').value;
+
+    // mock save
+    document.getElementById('userName').innerText = name;
+    document.getElementById('userEmail').innerText = email;
+    alert('Perfil actualizado correctamente');
+    showProfile();
+  }
+
+  function cerrarSesion(){
+    if(confirm('¿Estás seguro de que quieres cerrar sesión?')){
+      alert('Has cerrado sesión correctamente');
+      // Aquí podrías redirigir a login: window.location.href = '/login'
+    }
+  }
+
+  function alertSaved(what){
+    alert(what + ' guardadas');
+  }
+
+  // Init
+  init();
+  // Start showing profile
+  showProfile();
+</script>
+</body>
+</html>
